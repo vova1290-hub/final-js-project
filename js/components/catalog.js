@@ -48,7 +48,22 @@ export async function initCatalog() {
                 }
             }    
         }
-        renderCatalog(list, renderMassiv);
+
+        const status = checkForm.querySelector('input[name="status"]:checked');
+
+        if (status.value === 'instock') {
+            const inStock = [];
+
+            for (const product of renderMassiv) {
+                if (product.availability.moscow > 0 || product.availability.orenburg > 0 || product.availability.saintPetersburg > 0) {
+                    inStock.push(product);
+                 }
+            }
+
+            renderMassiv = inStock;
+        }
+
+        renderCatalog(list, renderMassiv);      
     });
 
     renderCatalog(list, products)
