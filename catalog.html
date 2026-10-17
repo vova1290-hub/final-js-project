@@ -320,7 +320,7 @@
               <option value="rating-max">Сначала популярные</option>
             </select>
           </div>
-          <ul class="catalog__list">
+          <template id="product-card-template">
             <li class="catalog__item">
               <div class="product-card">
                 <div class="product-card__visual">
@@ -372,7 +372,8 @@
                 </div>
               </div>
             </li>
-          </ul>
+          </template>
+          <ul class="catalog__list"></ul>
           <ol class="catalog__pagination">
             <li class="catalog__pagination-item">
               <button class="catalog__pagination-link">1</button>
