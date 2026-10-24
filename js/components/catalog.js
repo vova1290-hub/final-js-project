@@ -1,10 +1,12 @@
 import { createProductCard } from './card.js';
+import { setBasketProducts } from './basket.js';
 
 export async function initCatalog() {
     const list = document.querySelector('.catalog__list');
 
     const response = await fetch('./data/data.json');
     const products = await response.json();
+    setBasketProducts(products);
     const checkFields = document.querySelectorAll('.catalog-form .custom-checkbox__field');
     const checkForm = document.querySelector('.catalog-form');
     const sortEl = document.querySelector('.catalog__sort-select');
