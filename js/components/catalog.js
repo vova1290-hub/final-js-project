@@ -7,6 +7,7 @@ export async function initCatalog() {
     const products = await response.json();
     const checkFields = document.querySelectorAll('.catalog-form .custom-checkbox__field');
     const checkForm = document.querySelector('.catalog-form');
+    const sortEl = document.querySelector('.catalog__sort-select');
 
     for (const checkField of checkFields) {
         const box = checkField.parentElement;
@@ -16,13 +17,19 @@ export async function initCatalog() {
 
         for (const product of products) {
             if (product.type.includes(checkField.value)) {
-            count = count + 1;
+                count = count + 1;
             }
         }
         countEl.textContent = count;
     }
 
-    checkForm.addEventListener("change", function() {
+    const sortingStrategies = {
+        'price-min': (a, b) => a.price.new - b.price.new,      
+        'price-max': (a, b) => b.price.new - a.price.new,     
+        'rating-max': (a, b) => b.rating - a.rating,           
+    };
+
+    function updateCatalog() {
         let checkMassiv = []
 
         for (const checkField of checkFields) {
@@ -63,11 +70,27 @@ export async function initCatalog() {
             renderMassiv = inStock;
         }
 
+        const currentSort = sortEl.value;
+        const sortFunction = sortingStrategies[currentSort];
+
+        if (sortFunction) {
+            renderMassiv.sort(sortFunction);
+        }
+
         renderCatalog(list, renderMassiv);      
+    };
+
+    checkForm.addEventListener("change", function() {
+        updateCatalog();
     });
 
-    renderCatalog(list, products)
+    sortEl.addEventListener("change", function() {
+        updateCatalog();
+    });
 
+    updateCatalog();
+
+    
 }
 
 export function renderCatalog(list, products) {
