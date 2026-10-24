@@ -24,9 +24,9 @@ export async function initCatalog() {
     }
 
     const sortingStrategies = {
-        'price-min': (a, b) => a.price.new - b.price.new,      
-        'price-max': (a, b) => b.price.new - a.price.new,     
-        'rating-max': (a, b) => b.rating - a.rating,           
+        'price-min': (a, b) => a.price.new - b.price.new,
+        'price-max': (a, b) => b.price.new - a.price.new,
+        'rating-max': (a, b) => b.rating - a.rating,
     };
 
     function updateCatalog() {
@@ -36,7 +36,7 @@ export async function initCatalog() {
             if (checkField.checked) {
                 checkMassiv.push(checkField.value);
             }
-        }    
+        }
 
         let renderMassiv = []
 
@@ -53,7 +53,7 @@ export async function initCatalog() {
                 if (matches) {
                     renderMassiv.push(product);
                 }
-            }    
+            }
         }
 
         const status = checkForm.querySelector('input[name="status"]:checked');
@@ -64,7 +64,7 @@ export async function initCatalog() {
             for (const product of renderMassiv) {
                 if (product.availability.moscow > 0 || product.availability.orenburg > 0 || product.availability.saintPetersburg > 0) {
                     inStock.push(product);
-                 }
+                }
             }
 
             renderMassiv = inStock;
@@ -74,10 +74,11 @@ export async function initCatalog() {
         const sortFunction = sortingStrategies[currentSort];
 
         if (sortFunction) {
+            renderMassiv = [...renderMassiv];
             renderMassiv.sort(sortFunction);
         }
 
-        renderCatalog(list, renderMassiv);      
+        renderCatalog(list, renderMassiv);
     };
 
     checkForm.addEventListener("change", function() {
@@ -88,9 +89,8 @@ export async function initCatalog() {
         updateCatalog();
     });
 
+    sortEl.value = 'price-min';
     updateCatalog();
-
-    
 }
 
 export function renderCatalog(list, products) {
