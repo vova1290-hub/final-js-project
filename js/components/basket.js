@@ -1,3 +1,5 @@
+import { deleteBasket } from './removeBasket.js';
+
 let products = [];
 
 export function setBasketProducts(items) {
@@ -55,6 +57,10 @@ export function addToBasket(id) {
     const closeButtonEl = document.createElement('button');
     closeButtonEl.classList.add('basket__item-close');
     closeButtonEl.type = 'button';
+
+    closeButtonEl.addEventListener('click', () => {
+        deleteBasket(itemEl)
+    });
 
     const iconEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     iconEl.classList.add('main-menu__icon');
