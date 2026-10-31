@@ -7,9 +7,21 @@ export async function initCatalog() {
     const response = await fetch('./data/data.json');
     const products = await response.json();
     setBasketProducts(products);
+    const dayProductsList = document.querySelector('.day-products__list')
     const checkFields = document.querySelectorAll('.catalog-form .custom-checkbox__field');
     const checkForm = document.querySelector('.catalog-form');
     const sortEl = document.querySelector('.catalog__sort-select');
+
+    const dayProducts = products.filter((product) => product.goodsOfDay);
+
+    for (const product of dayProducts) {
+        const card = createProductCard(product);
+
+        card.classList.add('day-products__item', 'swiper-slide');
+        card.querySelector('.product-card').classList.add('product-card--small');
+
+        dayProductsList.append(card);
+    }
 
     for (const checkField of checkFields) {
         const box = checkField.parentElement;
