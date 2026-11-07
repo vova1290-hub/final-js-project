@@ -2310,23 +2310,42 @@ button {
   background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 100%;
+  padding: 20px;
   top: 0;
   left: 0;
+  z-index: 100;
+  overflow-y: auto;
+}
+.message[hidden] {
+  display: none;
 }
 .message__content {
   width: 400px;
+  max-width: 100%;
   min-height: 200px;
+  margin: auto;
+  padding: 40px;
   background-color: #ffffff;
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 16px;
   position: relative;
-  padding: 40px;
   text-align: center;
+}
+.message__title {
+  margin: 0;
   font-size: 24px;
-  font-weight: 500;
-  line-height: 36px;
+  font-weight: 600;
+  line-height: 32px;
+}
+.message__text {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
 }
 .message__close {
   padding: 0;
@@ -2342,31 +2361,3 @@ button {
   align-items: center;
   justify-content: center;
 }/*# sourceMappingURL=style.css.map */
-.message[hidden] {
-    display: none;
-}
-
-.message {
-    z-index: 100;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.message__content {
-    flex-direction: column;
-    gap: 16px;
-    max-width: 100%;
-    margin: auto;
-}
-
-.message__title {
-    margin: 0;
-    font-size: 24px;
-    line-height: 32px;
-}
-
-.message__text {
-    margin: 0;
-    font-size: 18px;
-    line-height: 26px;
-}

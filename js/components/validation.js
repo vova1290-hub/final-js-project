@@ -54,7 +54,7 @@ export function initValidation() {
 
     closeButton.addEventListener("click", function() {
         messageEl.hidden = true;
-    })
+    });
 
     validate.onSuccess(async function(event) {
         event.preventDefault();
