@@ -1958,6 +1958,11 @@ button {
 .day-products {
   padding: 70px 0 76px;
 }
+.day-products__slider {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
 .day-products__top {
   display: flex;
   align-items: center;

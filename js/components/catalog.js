@@ -1,5 +1,6 @@
 import { createProductCard } from './card.js';
 import { setBasketProducts } from './basket.js';
+import { initDayProducts } from './day-products.js';
 
 export async function initCatalog() {
     const list = document.querySelector('.catalog__list');
@@ -22,6 +23,8 @@ export async function initCatalog() {
 
         dayProductsList.append(card);
     }
+
+    initDayProducts();
 
     for (const checkField of checkFields) {
         const box = checkField.parentElement;
