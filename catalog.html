@@ -526,20 +526,20 @@
         </h2>
         <img class="questions__img" src="images/lamp.png" width="253" height="319" alt="Фотография лампы">
         <p class="questions__text">Эксперты по светотехнике подберут накладные светильники специально под вашу задачу. Вы получите проект освещения и профессиональную консультацию бесплатно.</p>
-        <form action="#" method="POST" class="questions__form" novalidate>
+        <form action="https://httpbin.org/post" method="POST" class="questions__form" novalidate>
           <div class="questions__inner">
             <div class="custom-input">
               <label for="name" class="custon-input__label">Ваше имя</label>
-              <input type="text" class="custom-input__field" id="name" placeholder="Светлана">
+              <input type="text" class="custom-input__field" id="name" name="name" placeholder="Светлана">
             </div>
             <div class="custom-input">
               <label for="email" class="custon-input__label">Ваша почта</label>
-              <input type="email" class="custom-input__field" id="email" placeholder="example@example.com">
+              <input type="email" class="custom-input__field" id="email" name="email" placeholder="example@example.com">
             </div>
             <button class="questions__btn btn btn--big" type="submit">Отправить заявку</button>
           </div>
           <div class="custom-checkbox">
-            <input class="visually-hidden custom-checkbox__field" id="agree" type="checkbox" name="pendant">
+            <input class="visually-hidden custom-checkbox__field" id="agree" type="checkbox" name="agree">
             <label class="custom-checkbox__label" for="agree">
               <span class="custom-checkbox__name">Я согласен с политикой конфиденциальности</span>
               <svg class="custom-checkbox__icon" width="10" height="10" aria-hidden="true">
@@ -628,6 +628,20 @@
     </div>
   </div>
 </footer>
+<!-- Модальное окно -->
+<div class="message" role="dialog" aria-modal="true" aria-labelledby="message-title" hidden>
+  <div class="message__content">
+    <button class="message__close" type="button" aria-label="Закрыть окно">
+      <svg width="20" height="20" aria-hidden="true">
+        <use xlink:href="images/sprite.svg#icon-close"></use>
+      </svg>
+    </button>
+
+    <h2 class="message__title" id="message-title">Результат отправки</h2>
+    <p class="message__text"></p>
+  </div>
+</div>
+
 <script src="./js/vendor/swiper.js"></script>
 <script src="./js/vendor/just-validate.js"></script>
 <script src="./js/vendor/popprjs.min.js"></script>

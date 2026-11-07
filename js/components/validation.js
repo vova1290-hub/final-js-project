@@ -46,4 +46,44 @@ export function initValidation() {
     ], {
         errorsContainer: '#agree-error',
     });
+
+    const messageEl = document.querySelector('.message');
+    const messageTitle = messageEl.querySelector('.message__title');
+    const messageText = messageEl.querySelector('.message__text');
+    const closeButton = messageEl.querySelector('.message__close');
+
+    closeButton.addEventListener("click", function() {
+        messageEl.hidden = true;
+    })
+
+    validate.onSuccess(async function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(formEl);
+        const submitButton = formEl.querySelector('button[type="submit"]');
+
+        submitButton.disabled = true;
+
+        try {
+            const response = await fetch('https://httpbin.org/post', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error('Не удалось отправить форму');
+            }
+
+            messageTitle.textContent = 'Регистрация прошла успешно';
+            messageText.textContent = 'Ваша заявка отправлена';
+            messageEl.hidden = false;
+        } catch (error) {
+            console.log('Ошибка отправки формы:', error);
+            messageTitle.textContent = 'Ошибка отправки';
+            messageText.textContent = 'Не удалось отправить форму. Попробуйте ещё раз';
+            messageEl.hidden = false;
+        } finally {
+            submitButton.disabled = false;
+        }
+    });
 } 
